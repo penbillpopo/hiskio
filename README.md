@@ -1,32 +1,15 @@
-# Tailwind CSS v2.0 | Nuxt Setup and Install
+## Project setup
 
-Source Code for Setup and Install Nuxt with Tailwindcss v2.0 on <a href="https://www.youtube.com/channel/UCSyosm-WcUPT4LnUIIdqSCw" title="Subscribe to CodeWithChu Youtube Channel" target="_blank">CodeWithChu</a> YouTube Channel.
+[npm](https://www.npmjs.com/get-npm) or [yarn](https://yarnpkg.com/lang/en/)
 
-## Install
+#### Install dependencies
 
-```
+```bash
 npm install
 ```
 
-## NPM Scripts
+#### Compiles and hot-reloads for development
 
-```sh
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+```bash
+npm run dev
 ```
-
-## connect with @codewithchu
-
-- [Website](https://www.arthurchu.ca "Web Development Tutorials, Tips & Tricks | CodeWithChu Website")
-- [YouTube](https://www.youtube.com/channel/UCSyosm-WcUPT4LnUIIdqSCw "CodeWithChu Youtube Channel")
-- [Instagram](https://www.instagram.com/codewithchu/ "Follow CodeWithChu on Instagram")
-- [Twitter](https://twitter.com/codewithchu "Follow CodeWithChu on Twitter")
-- [Facebook](https://www.facebook.com/codewithchu "Like CodeWithChu on Facebook")
-- [Codepen](https://codepen.io/codewithchu "Follow CodeWithChu on Codepen")
