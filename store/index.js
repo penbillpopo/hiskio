@@ -10,7 +10,6 @@ export const mutations = {
         state.isLoginOpen = isOpen;
     },
     CHANGE_USERDATA(state,data){
-        console.log(data)
         state.userData = Object.assign({},data);
     },
     CHANGE_AUTHENTICATED(state,authenticated){

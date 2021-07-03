@@ -19,7 +19,8 @@ module.exports = {
     extend: {
       colors: {
         emerald: colors.emerald,
-        gray: colors.trueGray
+        gray: colors.trueGray,
+        darkblue:'#178fac'
       },
       width: {
         '100px':'100px'

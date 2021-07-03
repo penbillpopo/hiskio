@@ -1,19 +1,16 @@
 <template>
-  <div class="wrapper">
+  <div class="pageContainer">
     <Login></Login>
-    <div class="box">
-
-      <div class="card" v-for="item in result" :key="item.id">
-        <div class="title">
-          {{item.title}}
+    <div class="courseField">
+      <div class="courseBox" v-for="item in result" :key="item.id"> 
+        <img :src="item.image" alt="stew" class="">
+        <div class="m-4">
+          <span class="">{{item.title}}</span>
+          <span class="">{{item.title}}</span>
         </div>
-        <div>
-          <span>
-            ${{item.price}}
-          </span>
-          <small>
-            ${{item.fixed_price}}
-          </small>
+        <div class="">
+          <svg class="" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>${{item.price}}</span>
         </div>
       </div>
     </div>
@@ -33,6 +30,7 @@ export default {
       const token = tokenObj.token
       data = (await apiGetFundServer(token)).data
     }
+    console.log(data)
     return {
       result:data
     }
@@ -50,34 +48,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.wrapper {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-.btn {
-  @apply flex-1 border-b-2 md:flex-none ml-2 font-bold py-4 px-6 rounded;
-  .title {
-    @apply text-6xl font-bold;
-  }
-}
-.box{
-  display: flex;
-  justify-content: space-around;
-  
-  width: 100%;
-  .card{
-    width: 150px;
-    height: 150px;
-    border:2px solid #000;
-    .title{
-      overflow : hidden;
-      text-overflow : ellipsis;
-      white-space : nowrap;
+  .pageContainer{
+    width: 100%;
+    .courseField{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      .courseBox{
+        width: 20%;
+      }
     }
   }
-}
 </style>

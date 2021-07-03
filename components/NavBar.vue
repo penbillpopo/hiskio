@@ -1,14 +1,9 @@
 <template>
-  <div>
+  <div class="navfield">
     <nav>
-      <div>
-        <NuxtLink class="logo" to="/"></NuxtLink>
-      </div>
-      <div class="flex">
-        <button v-if="!isAuthenticated" class="btn" @click="OnLoginClick">Login</button>
-        <button v-else class="userBtn" :style="userBtnStyle()" @click="OnUserClick"></button>
-        <!-- <button v-else class="btn" @click="OnLogoutClick">Logout</button> -->
-      </div>
+      <NuxtLink class="logo" to="/"></NuxtLink>
+      <button v-if="!isAuthenticated" class="loginBtn" @click="OnLoginClick">登入</button>
+      <button v-else class="userBtn" :style="userBtnStyle()" @click="OnUserClick"></button>
     </nav>
     <aside :class="asideClass()">
       <button class="closeBtn" @click="OnAsideCloseClick">X</button>
@@ -49,7 +44,7 @@ export default {
       return {backgroundImage:'url('+this.getUserImg+')'}
     },
     OnLoginClick(){
-      this.$store.dispatch('changeIsLoginOpen',!this.isLoginOpen)
+      this.$store.dispatch('changeIsLoginOpen',true)
     },
     OnUserClick(){
       this.isAsideOpen = true
@@ -66,35 +61,63 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-nav {
-  @apply flex justify-between items-center py-2 px-10 fixed w-full bg-white shadow-lg;
-  //  mr-12px sn-500:h-10px sn-500:w-66px sn-500:mr-6px
-  .logo {
-    @apply inline-block bg-center bg-no-repeat bg-contain h-15px w-100px;
-    background-image: url('~assets/img/logo-hiskio.svg');
-  }
-  .btn {
-    @apply px-4 py-2 text-gray-500 rounded-lg hover:bg-emerald-100 hover:text-emerald-700;
-
-    &.nuxt-link-exact-active {
-      @apply bg-emerald-100 text-emerald-700;
+.navfield{
+  width: 100%;
+  height: 50px;
+  nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    .logo {
+      position: absolute;
+      left: 60px;
+      top:50%;
+      transform: translateY(-50%);
+      width: 100px;
+      height: 50px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-image: url('~assets/img/logo-hiskio.svg');
+    }
+    .loginBtn{
+      position: absolute;
+      right: 50px;
+      top:50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 32px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      color: rgba(48,142,172);
+      border:1px solid rgba(48,142,172);
+      border-radius: 3px;
+    }
+    .userBtn{
+      position: absolute;
+      right: 20px;
+      top:50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      border-radius: 50%;
     }
   }
-  .userBtn{
-    @apply rounded-full h-10 w-10 bg-contain;
-
-  }
-}
-aside{
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100vh;
-  background-color: white;
-  transition: right 1s ease;
-  &.active{
-    right: 0;
+  aside{
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    transition: right 1s ease;
+    &.active{
+      right: 0;
+    }
   }
 }
 </style>
