@@ -1,13 +1,15 @@
 <template>
-  <div class="box">
-    <img :src="avatar" alt="">
-    <button class="btn" @click="OnLogoutClick">Logout</button>
+  <div class="asideMember">
+    <img class="userImg" :src="avatar" alt="">
+    <p class="userName">{{userName}}</p>
+    <div class="line"></div>
+    <button class="loginBtn" @click="OnLogoutClick">會員登出</button>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['avatar'],
+    props: ['avatar','userName'],
     data(){
         return {
         }
@@ -25,20 +27,32 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-    .box{
+    .asideMember{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        img{
+        .userImg{
             display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
         }
-    }
-    .btn {
-        @apply px-4 py-2 text-gray-500 rounded-lg hover:bg-emerald-100 hover:text-emerald-700;
-
-        &.nuxt-link-exact-active {
-        @apply bg-emerald-100 text-emerald-700;
+        .userName{
+            font-size: 22px;
+            color: #595959;
+            margin-bottom: 20px;
+        }
+        .line{
+            width: 100%;
+            height: 1px;
+            background-color: #00000010;
+            margin-bottom: 20px;
+        }
+        .loginBtn{
+            font-size: 18px;
+            color: rgb(140,140,140);
         }
     }
 </style>

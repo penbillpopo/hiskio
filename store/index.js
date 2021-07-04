@@ -70,9 +70,9 @@ export const actions = {
         })
     },
     async logout({commit}){
-        const {token} = this.$cookies.get("accessToken")
-        if(token){
-            const res = await apiLogout(token)
+        const accessToken = this.$cookies.get("accessToken")
+        if(accessToken){
+            const res = await apiLogout(accessToken.token)
             if(res){
                 commit('CHANGE_AUTHENTICATED',false)
                 this.$cookies.remove("accessToken")

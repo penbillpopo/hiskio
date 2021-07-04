@@ -6,8 +6,10 @@
       <button v-else class="userBtn" :style="userBtnStyle()" @click="OnUserClick"></button>
     </nav>
     <aside :class="asideClass()">
-      <button class="closeBtn" @click="OnAsideCloseClick">X</button>
-      <aside-member :avatar="getUserImg" @OnLogoutClick="OnLogoutClick"></aside-member>
+      <button class="closeBtn" @click="OnAsideCloseClick">
+        <svg data-v-f2fdd046="" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" class="absolute flex items-center justify-center text-gray-700 cursor-pointer top-30px right-30px w-13 h-13 svg-inline--fa fa-times fa-w-11 fa-lg"><path data-v-f2fdd046="" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z" class=""></path></svg>
+      </button>
+      <aside-member :avatar="getUserImg" :userName="getUserName" @OnLogoutClick="OnLogoutClick"></aside-member>
     </aside>
   </div>
 </template>
@@ -26,6 +28,9 @@ export default {
   computed:{
     getUserImg(){
       return this.$store.getters.getUserData?.avatar
+    },
+    getUserName(){
+      return this.$store.getters.getUserData?.username
     },
     isLoginOpen(){
       return this.$store.getters.getIsLoginOpen
@@ -113,10 +118,24 @@ export default {
     right: -300px;
     width: 300px;
     height: 100vh;
+    z-index: 999;
     background-color: white;
-    transition: right 1s ease;
+    transition: right 0.5s ease;
+    padding-top:30px;
     &.active{
       right: 0;
+    }
+    .closeBtn{
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      svg{
+        width: 100%;
+        height: 100%;
+        fill: #595959;
+      }
     }
   }
 }
