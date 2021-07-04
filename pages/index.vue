@@ -2,7 +2,7 @@
   <div class="pageContainer">
     <Login></Login>
     <div class="courseField">
-      <div class="courseBox" v-for="item in result" :key="item.id"> 
+      <div class="courseBox" v-for="item in fundData" :key="item.id"> 
         <div class="headImg" :style="{backgroundImage:'url('+item.image+')'}">
           <button class="addCartBtn">
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-shopping-cart fa-w-18 fa-lg shopping-cart ml-6px transition duration-200 hover:text-yellow-3 text-white">
@@ -36,37 +36,45 @@
 import {apiGetFund} from '../api/index'
 
 export default {
+  async asyncData(data) {
+    let fundData =null
+    let cookie = null
+    let token = ''
+    if(data.ssrContext){
+      cookie = data.ssrContext?.req?.headers?.cookie
+      if(cookie){
+        const cookieparser = require('cookieparser');
+        const tokenObj = JSON.parse(cookieparser.parse(cookie)?.accessToken);
+        token = tokenObj.token
+      }
+    }else{
+      cookie = data.app?.$cookies?.get('accessToken')
+      if(cookie){
+        token = cookie.token
+      }
+    }
+    if(token){
+      fundData = (await apiGetFund(token)).data
+    }
+    return {
+      fundData:fundData
+    }
+  },
   data() {
     return {
-      result:null,
+      fundData:null,
     }
   },
   created(){
-    this.regInitData()
-    this.initData()
   },
   mounted(){
   },
   watch: {
-    '$store.getters.getAuthenticated': function(value) {
-      if(value){
-
-      }
+    '$store.getters.getAuthenticated': async function(value) {
+      this.$nuxt.refresh()
     }
   },
   methods: {
-    regInitData(){
-      this.$nuxt.$on('getfund', () => {
-        this.initData();
-      })
-    },
-    async initData(){
-      const accessToken = this.$cookies.get("accessToken")
-      if(accessToken){
-          const res = await apiGetFund(accessToken.token)
-          this.result = res.data
-      }
-    },
     getSponsorProgress(consumers,fundraisingTickets){
       let res = parseInt(consumers)/parseInt(fundraisingTickets)*100
       return parseInt(res)
