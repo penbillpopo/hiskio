@@ -1,7 +1,7 @@
 <template>
   <div v-if="isLoginOpen" class="dialogContainer">
     <!--login-->
-    <div class="dialog">
+    <div class="dialog" @keyup.enter="OnSubmitClick">
       <button class="closeBtn" @click="OnCloseClick"></button>
       <img class="logo" src="~/assets/img/logo-hiskio.svg"/>
       <div class="tabField">
@@ -89,7 +89,7 @@ export default {
       },
       OnSubmitClick(){
         this.$store.dispatch('login',this.formData)
-      }
+      },
     }
 };
 </script>

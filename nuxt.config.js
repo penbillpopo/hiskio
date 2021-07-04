@@ -4,7 +4,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: "tw2-nuxt",
+    title: "Hiskio",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -35,8 +35,20 @@ export default {
     // Simple usage
     'cookie-universal-nuxt',
     ['cookie-universal-nuxt', { alias: 'cookiz' }],
+    '@nuxtjs/toast'
   ],
-  
+  toast: {
+    position: 'top-center',
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
+  },
   axios: {
     proxy: true,
   },

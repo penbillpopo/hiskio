@@ -1,13 +1,12 @@
 
-export default async ({ store,route,redirect,ssrContext,app }) => {
+export default async ({ store,route,redirect,app }) => {
   let token = ''
-  let authenticated = false;
+  let authenticated = store.getters.getAuthenticated;
   const sameRoute = route.path==='/'
   if (process.client) {
     token = app.$cookies.get('accessToken')
     await store.dispatch('getInfo',token);
   }
-  authenticated = store.getters.getAuthenticated;
   if (!authenticated && !sameRoute) {
     return redirect('/')
   }
